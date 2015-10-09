@@ -1,11 +1,14 @@
 body{
-	padding-top: 50px;
+  padding-top: 50px;
+}
+.navbar-brand{
+  color: #ffffff !important;
 }
 footer{
-	background: #f4f4f4;
-	height: 40px;
-	text-align: center;;
-	margin-top: 30px;
-	padding-top: 10px;
-	overflow: auto;
+  background: #f4f4f4;
+  height: 40px;
+  text-align: center;;
+  margin-top: 30px;
+  padding-top: 10px;
+  overflow: auto;
 }
