@@ -1,6 +1,9 @@
 body{
   padding-top: 50px;
 }
+main{
+  min-height: 600px;
+}
 .navbar-brand{
   color: #ffffff !important;
 }
