@@ -30,6 +30,10 @@ html
               a(href='/users/login') Login
             li( class=(title === 'Register' ? 'active' : '') )
               a(href='/users/register') Register
+    if locals.message
+      each v,k in message
+        .message.alert(class='alert-#{k}', style="margin-bottom: 0px; position: absolute; width: 100%; text-align: center;")
+          = v
     main
       block content
 

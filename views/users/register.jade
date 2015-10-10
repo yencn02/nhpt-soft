@@ -2,9 +2,13 @@ extends ../layout
 
 block content
   .container
-    form( method='post', action='users/register', class="col-sm-6", enctype='multipart/form-data')
+    form( method='post', action='/users/register', class="col-sm-6", enctype='multipart/form-data')
       h1 Register
       p Please register using the form below
+      if errors
+        ul.errors.alert.alert-danger
+          each error, i in errors
+            li #{error.msg}
       .form-group
         label Name
         input.form-control(type='text', name='name', placeholder='Enter Name')
@@ -13,7 +17,7 @@ block content
         input.form-control(type='email', name='email', placeholder='Enter Email')
       .form-group
         label Username
-        input.form-control(type='email', name='username', placeholder='Enter Username')
+        input.form-control(type='text', name='username', placeholder='Enter Username')
       .form-group
         label Password
         input.form-control(type='password', name='password', placeholder='Enter Password')
@@ -22,5 +26,5 @@ block content
         input.form-control(type='password', name='password_confirmation', placeholder='Enter Password Confirmation')
       .form-group
         label Profile Image
-        input.form-control(type='file', name='profileimage')
-      button.btn.btn-default(type='submit') Submit
+        input.form-control(type='file', name='avatar')
+      button.btn.btn-default(type='submit') Register
