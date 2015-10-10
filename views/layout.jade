@@ -25,6 +25,11 @@ html
               a(href='/about') About Us
             li( class=(title === 'Contact' ? 'active' : '') )
               a(href='/contact') Contact
+          ul.nav.navbar-nav.navbar-right
+            li( class=(title === 'Login' ? 'active' : '') )
+              a(href='/users/login') Login
+            li( class=(title === 'Register' ? 'active' : '') )
+              a(href='/users/register') Register
     main
       block content
 
