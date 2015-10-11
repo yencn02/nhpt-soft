@@ -11,19 +11,19 @@ block content
             li #{error.msg}
       .form-group
         label Name
-        input.form-control(type='text', name='name', placeholder='Enter Name')
+        input.form-control(type='text', name='name', placeholder='Enter Name', value='#{name || ""}')
       .form-group
         label Email
-        input.form-control(type='email', name='email', placeholder='Enter Email')
+        input.form-control(type='email', name='email', placeholder='Enter Email', value='#{email|| ""}')
       .form-group
         label Username
-        input.form-control(type='text', name='username', placeholder='Enter Username')
+        input.form-control(type='text', name='username', placeholder='Enter Username', value='#{username || ""}')
       .form-group
         label Password
-        input.form-control(type='password', name='password', placeholder='Enter Password')
+        input.form-control(type='password', name='password', placeholder='Enter Password', value='#{password || ""}')
       .form-group
         label Password Confirmation
-        input.form-control(type='password', name='password_confirmation', placeholder='Enter Password Confirmation')
+        input.form-control(type='password', name='password_confirmation', placeholder='Enter Password Confirmation', value='#{password_confirmation|| ""}')
       .form-group
         label Profile Image
         input.form-control(type='file', name='avatar')

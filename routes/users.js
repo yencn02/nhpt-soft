@@ -56,7 +56,6 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
       avatar: avatar
     });
     // Create user
-    console.log("============")
     User.createUser(newUser, function(err, user){
       console.log(err);
       console.log(user);
