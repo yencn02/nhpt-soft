@@ -21,11 +21,12 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
       password_confirmation = req.body.password_confirmation;
   var avatar = null;
   // Check for Image field
+  console.log(req.file)
   if(req.file){
-    avatar = req.file
+    avatar = req.file.name;
   }else{
     // Set default image
-    avatar = 'noimage.png'
+    avatar = 'no_image.png'
   }
   // Form validation
   req.checkBody('name', 'Name field is required').notEmpty()
@@ -37,7 +38,6 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
 
   // Check for errors
   var errors = req.validationErrors();
-  console.log(errors);
   if(errors){
     res.render('users/register', {
       errors: errors,
@@ -56,9 +56,11 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
       avatar: avatar
     });
     // Create user
+    console.log("============")
     User.createUser(newUser, function(err, user){
-      if(err) throw err;
+      console.log(err);
       console.log(user);
+      if(err) throw err;
     })
 
     // Success Message

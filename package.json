@@ -17,7 +17,12 @@
     "nodemailer": "*",
     "express-validator": "*",
     "connect-flash": "*",
+    "express-messages": "*",
     "express-session": "*",
-    "mongoose": "*"
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-http": "*"
   }
 }

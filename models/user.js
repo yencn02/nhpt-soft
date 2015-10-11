@@ -1,7 +1,7 @@
-var mongoose = require('mongoose')
-var db = mongoose.connection;
+var mongoose = require('./connection')
 
 // User Schema
+
 var UserSchema = mongoose.Schema({
   username:{
     type: String,
@@ -19,9 +19,9 @@ var UserSchema = mongoose.Schema({
   avatar: {
     type: String
   }
-})
+});
 
-var User = module.exports = mongoose.model('User', UserSchema)
+var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = function  (newUser, callback) {
   newUser.save(callback);
