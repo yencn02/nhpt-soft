@@ -1,0 +1,1 @@
+setTimeout(function(){$(".message.alert").fadeOut()}, 3000)
