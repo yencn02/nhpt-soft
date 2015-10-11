@@ -17,6 +17,7 @@
     "nodemailer": "*",
     "express-validator": "*",
     "connect-flash": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "mongoose": "*"
   }
 }

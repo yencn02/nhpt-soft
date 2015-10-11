@@ -1,3 +1,4 @@
+var secretToken = "325fdsdoiul35eh44lsdfsdhfghytkvnn64"
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -28,7 +29,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressValidator());
-app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+  secret: secretToken,
+  cookie: { maxAge: 60000 },
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(flash());
 
 
