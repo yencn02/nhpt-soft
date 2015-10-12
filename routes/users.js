@@ -24,9 +24,15 @@ var upload = multer({ storage: storage })
 var User = require('../models/user')
 /* GET users listing. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('users/index', {
-    title: "Dashboard"
+  var users = User.find({_id: {$ne: req.user.id}}, function(err, users){
+    if(err) throw err;
+    console.log(users)
+    res.render('users/index', {
+      title: "Dashboard",
+      users: users
+    })    
   })
+
 });
 
 function ensureAuthenticated(req, res, next){

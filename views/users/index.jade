@@ -2,4 +2,6 @@ extends ../layout
 
 block content
   .container
-    | This feature is under construction.
+    h1 Find Connections
+    each user, i in users
+      = user.name
