@@ -26,14 +26,19 @@ html
             li( class=(title === 'Contact' ? 'active' : '') )
               a(href='/contact') Contact
           ul.nav.navbar-nav.navbar-right
-            li( class=(title === 'Login' ? 'active' : '') )
-              a(href='/users/login') Login
-            li( class=(title === 'Register' ? 'active' : '') )
-              a(href='/users/register') Register
-    if locals.message
-      each v,k in message
-        .message.alert(class='alert-#{k}', style="margin-bottom: 0px; position: absolute; width: 100%; text-align: center;")
-          = v
+            if currentUser
+              li
+                a(href='/users/logout') Logout
+            else
+              li( class=(title === 'Login' ? 'active' : '') )
+                a(href='/users/login') Login
+              li( class=(title === 'Register' ? 'active' : '') )
+                a(href='/users/register') Register
+    .row
+      .col-sm-3
+      .col-sm-6
+        != messages()
+      .col-sm-3
     main
       block content
 

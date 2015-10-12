@@ -1,1 +1,1 @@
-setTimeout(function(){$(".message.alert").fadeOut()}, 3000)
+setTimeout(function(){$("#messages").fadeOut()}, 3000)

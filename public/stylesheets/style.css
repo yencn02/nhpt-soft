@@ -7,6 +7,33 @@ main{
 .navbar-brand{
   color: #ffffff !important;
 }
+#messages{
+  margin-bottom: 0px; position: absolute; width: 100%; text-align: center;
+}
+#messages ul {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  list-style: none;
+}
+#messages .success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+#messages .error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+#messages .info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
 footer{
   background: #f4f4f4;
   height: 40px;
