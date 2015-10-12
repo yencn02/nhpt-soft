@@ -1,6 +1,13 @@
 # About NHPT Soft #
 
-This is demo for express website
+This is demo for express website.
+
+Some available features:
+
+* Register
+* Login
+* Contact
+
 
 # Tech stack #
 
