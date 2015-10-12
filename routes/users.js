@@ -6,10 +6,16 @@ var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var User = require('../models/user')
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', ensureAuthenticated, function(req, res, next) {
   res.send('respond with a resource');
 });
 
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/users/login')
+}
 
 router.get('/register', function(req, res, next) {
   res.render('users/register', {
