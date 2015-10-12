@@ -44,8 +44,11 @@ module.exports.createUser = function  (newUser, callback) {
     if(err) throw err;
     newUser.password = hash;
     newUser.save(callback);
-  });
-  
+  });  
+}
+
+module.exports.avatar_url = function(avatar){
+  return "/uploads/" + avatar;
 }
 
 

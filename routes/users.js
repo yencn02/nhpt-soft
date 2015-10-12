@@ -1,9 +1,26 @@
 var express = require('express');
 var router = express.Router();
+
+//For authentication
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+// For upload file 
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var path = require('path')
+var crypto = require('crypto')
+var storage = multer.diskStorage({
+  destination: 'uploads/avatar/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+
+      cb(null, raw.toString('hex') + path.extname(file.originalname))
+    })
+  }
+})
+var upload = multer({ storage: storage })
+
 var User = require('../models/user')
 /* GET users listing. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
@@ -31,12 +48,9 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
       password_confirmation = req.body.password_confirmation;
   var avatar = null;
   // Check for Image field
-  console.log(req.file)
   if(req.file){
-    avatar = req.file.name;
-  }else{
-    // Set default image
-    avatar = 'no_image.png'
+    console.log(req.file)
+    avatar = '/' + req.file.path;
   }
   // Form validation
   req.checkBody('name', 'Name field is required').notEmpty()
@@ -68,7 +82,6 @@ router.post('/register', upload.single('avatar'), function(req, res, next) {
     });
     // Create user
     User.createUser(newUser, function(err, user){
-      console.log(err);
       console.log(user);
       if(err) throw err;
     })

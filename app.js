@@ -63,7 +63,9 @@ app.use(expressValidator({
 }));
 
 app.use(cookieParser('secret'));
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static('uploads'));
 
 app.use(flash());
 app.use(function (req, res, next) {

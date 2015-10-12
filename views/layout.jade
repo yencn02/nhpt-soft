@@ -31,6 +31,9 @@ html
           ul.nav.navbar-nav.navbar-right
             if currentUser
               li
+                a.avatar(href='#')
+                  img(src='#{currentUser.avatar || "/images/icon-person.png"}')
+              li
                 a(href='/users/logout') Logout
             else
               li( class=(title === 'Login' ? 'active' : '') )
