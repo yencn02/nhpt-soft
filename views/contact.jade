@@ -2,15 +2,20 @@ extends layout
 
 block content
   .container
-    form( method='post', action='contact/send', class="col-sm-6")
+    form( method='post', action='/contact', class="col-sm-6")
       h1 Contact
+      if errors
+        ul.errors.alert.alert-danger
+          each error, i in errors
+            li #{error.msg}
       .form-group
         label Name
-        input.form-control(type='text', name='name', placeholder='Enter Name')
+        input.form-control(type='text', name='name', placeholder='Enter Name', value='#{name || ""}')
       .form-group
         label Email
-        input.form-control(type='email', name='email', placeholder='Enter Email')
+        input.form-control(type='email', name='email', placeholder='Enter Email', value='#{email || ""}')
       .form-group
         label Message
         textarea.form-control( name='message', placeholder='Enter Message...')
+          = message || ""
       button.btn.btn-default(type='submit') Submit

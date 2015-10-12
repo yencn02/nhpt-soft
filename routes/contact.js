@@ -1,34 +1,41 @@
 var express = require('express');
 var router = express.Router();
-var nodemailer = require('nodemailer')
+var mailer = require('../models/mailer')
+
 /* GET about page. */
 router.get('/', function(req, res, next) {
   res.render('contact', { title: 'Contact'});
 });
 
-router.post('/send', function(req, res, next){
-  var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth:{
-      user: 'yencn02@gmail.com',
-      pass: 'something'
-    }
-  });
-  var mailOptions = {
-    from: req.body.name + ' <'+req.body.email+'>',
-    to: 'yencn02@gmail.com',
-    subject: 'Website Submission',
-    text: 'You have a new submission with the following details...Name: ' + req.body.name+ ' Email: ' + req.body.email +' Message: ' + req.body.message,
-    html: '<p>You have a new submission with the following details</p><ul><li>Name: ' +req.body.name+ '</li><li>Email: ' +req.body.email+ '</li><li>Message: ' +req.body.message+ '</li></ul>'
+router.post('/', function(req, res, next){
+  // Form validation
+  req.checkBody('name', 'Name field is required').notEmpty()
+  req.checkBody('email', 'Email field is required').notEmpty()
+  req.checkBody('email', 'Email not valid').isEmail()
+  req.checkBody('message', 'Message field is required').notEmpty()
+
+  // Check for errors
+  var errors = req.validationErrors();
+  if(errors){
+    res.render('contact', {
+      errors: errors,
+      title: "Contact",
+      name: req.body.name,
+      email: req.body.email,
+      message: req.body.message
+    })
+  }else{
+    mailer.sendContactEmail(req.body, function(error, info){
+      if(error){
+        console.log(error)
+        req.flash('error', 'There were something went wrong. Please try again later.');
+        res.redirect('/')
+      }else{
+        req.flash('success', 'Your message has already been sent to our system admin.')
+        res.redirect('/')
+      }
+    })
   }
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-      console.log(error)
-      res.redirect('/')
-    }else{
-      console.log('Message Sent: ' + info.response);
-      res.redirect('/')
-    }
-  })
 });
+
 module.exports = router;
