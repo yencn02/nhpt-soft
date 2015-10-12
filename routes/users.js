@@ -7,7 +7,9 @@ var upload = multer({ dest: 'uploads/' })
 var User = require('../models/user')
 /* GET users listing. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('users/index', {
+    title: "Dashboard"
+  })
 });
 
 function ensureAuthenticated(req, res, next){
@@ -115,7 +117,7 @@ passport.use(new LocalStrategy(function(username, password, done){
 router.post('/login', passport.authenticate('local', {
   failureRedirect: '/users/login', 
   failureFlash: 'Invalid username or password',
-  successRedirect: '/',
+  successRedirect: '/users',
   successFlash: 'You are logged in'
 }), function(req, res){
   console.log('Authentication successful');

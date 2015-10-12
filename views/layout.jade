@@ -25,6 +25,9 @@ html
               a(href='/about') About Us
             li( class=(title === 'Contact' ? 'active' : '') )
               a(href='/contact') Contact
+            if currentUser
+              li( class=(title === 'Dashboard' ? 'active' : '') )
+                a(href='/users') Dashboard
           ul.nav.navbar-nav.navbar-right
             if currentUser
               li
